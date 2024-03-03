@@ -11,7 +11,7 @@ function AskQuestForm({handleAskQuestion,handleRecQuestion}) {
   const { t } = useTranslation();
 
   function handleShowChatHistory() {
-    navigation.navigate('OrdersScreen');
+    navigation.navigate('AllOrdersScreen');
   }
   return (
     <View style={styles.container}>

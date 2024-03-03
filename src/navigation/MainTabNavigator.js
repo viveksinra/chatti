@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import HomeScreens from "../screens/HomeScreens";
-import OrdersScreen from "../screens/OrdersScreen";
+import AllOrdersScreen from "../screens/AllOrdersScreen";
 import SettingScreen from "../screens/SettingScreen";
 import {useTranslation} from 'react-i18next';
 import LanguageSelector from "../components/SettingComponent/LanguageSelector";
@@ -47,7 +47,7 @@ const MainTabNavigator = () => {
 
       <Tab.Screen
         name="Orders"
-        component={OrdersScreen}
+        component={AllOrdersScreen}
         options={{
           tabBarLabel: t('tab.orders'),
           headerTitle:t('tab.orders'),

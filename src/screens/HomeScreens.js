@@ -16,7 +16,7 @@ const HomeScreens = () => {
  const [allProduct, setAllProduct] = useState([
   {_id:"absd",productName:"Maize (G1 Quality)", quality:"High-Quality Grade 1 Maize",price:"1850",productImage:"https://m.media-amazon.com/images/I/61V1TTqTu6L._AC_UF1000,1000_QL80_.jpg"},
   {_id:"bsd",productName:"Maize (G2 Quality)", quality:"Quality Grade 2 Maize",price:"1800",productImage:"https://seed2plant.in/cdn/shop/products/maizeseeds.jpg?v=1604034397"},
-  {_id:"bsd",productName:"Maize (G3 Quality)", quality:"Quality Grade 3 Maize",price:"1710",productImage:"https://5.imimg.com/data5/MU/QR/MY-12687905/best-quality-yellow-maize.jpg"},
+  {_id:"sd",productName:"Maize (G3 Quality)", quality:"Quality Grade 3 Maize",price:"1710",productImage:"https://5.imimg.com/data5/MU/QR/MY-12687905/best-quality-yellow-maize.jpg"},
  ])
 
   return (
@@ -34,7 +34,7 @@ const HomeScreens = () => {
     {t('secMain.three')}
          </Text>
 {allProduct.map(product => (
-  <ListProduct product={product}/>
+  <ListProduct key={product._id} product={product}/>
 ))}
 
 

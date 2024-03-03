@@ -11,7 +11,7 @@ import GeneralLoading from '../components/General/GeneralLoading';
 
 const image = { uri: ContentContext.chatHisBag };
 
-const OrdersScreen = () => {
+const AllOrdersScreen = () => {
   const {
    
     messages,
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrdersScreen;
+export default AllOrdersScreen;

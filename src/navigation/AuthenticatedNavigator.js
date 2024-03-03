@@ -1,11 +1,12 @@
 // AuthenticatedNavigator.js
 import React, { useContext, useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import OrdersScreen from '../screens/OrdersScreen';
+import AllOrdersScreen from '../screens/AllOrdersScreen';
 import MainTabNavigator from './MainTabNavigator';
 import NotImplementedScreen from '../screens/NotImplementedScreen';
 import { useTranslation } from 'react-i18next';
 import ProfileScreen from '../screens/ProfileScreen';
+import OrderProcessScreen from '../screens/OrderProcessScreen';
 import { ActivityIndicator, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // Import the checkAndUpdateChatHistory function
@@ -24,8 +25,8 @@ const AuthenticatedNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen name="MainTabs" component={MainTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen
-        name="OrdersScreen"
-        component={OrdersScreen}
+        name="AllOrdersScreen"
+        component={AllOrdersScreen}
         options={({ navigation }) => ({
           title: t('chatHis.one'),
           headerRight: () => (
@@ -53,6 +54,11 @@ const AuthenticatedNavigator = () => {
         name="ProfileScreen"
         component={ProfileScreen}
         options={{ title: 'Profile' }}
+      />
+      <Stack.Screen
+        name="OrderProcessScreen"
+        component={OrderProcessScreen}
+        options={{ title: 'Order Process' }}
       />
       <Stack.Screen name="Contacts" component={NotImplementedScreen} />
     </Stack.Navigator>

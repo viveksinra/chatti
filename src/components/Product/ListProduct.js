@@ -1,9 +1,14 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const ListProduct = ({product}) => {
+  const navigation = useNavigation();
+  function handleShowProfile() {
+    navigation.navigate('OrderProcessScreen');
+  }
   return (
-    <TouchableOpacity style={styles.container} onPress={() => alert('Product details clicked!')}>
+    <TouchableOpacity style={styles.container} onPress={() => handleShowProfile()}>
       <View style={styles.imageContainer}>
         {/* Product Image */}
         <Image
@@ -17,7 +22,7 @@ const ListProduct = ({product}) => {
         <Text style={styles.quality}>Quality: {product.quality}</Text>
         <Text style={styles.price}>Price: ₹{product.price}</Text>
             {/* Add to Cart Button */}
-            <Pressable style={styles.addButton} onPress={() => alert('Product added!')}>
+            <Pressable style={styles.addButton} onPress={() => handleShowProfile()}>
       <Text style={styles.buttonText}>Add</Text>
     </Pressable>
       </View>
