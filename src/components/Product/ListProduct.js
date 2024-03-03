@@ -1,23 +1,25 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Button, Pressable } from 'react-native';
 
-const ListProduct = () => {
+const ListProduct = ({product}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={() => alert('Product details clicked!')}>
       <View style={styles.imageContainer}>
         {/* Product Image */}
         <Image
-          source={{ uri: "https://lh3.googleusercontent.com/proxy/AdiWhqUkeZWIA1JWpnWPN9T-DyDVeQ1JUBT0jqUq0Z1f8VV6A16o9C--OttwH-wI1WsquywyIVzk5KmeRUq5gQdEJ07SpRvzT2nM25yB8wHYbwOOAXMkttHXqpwVtBz0d30ToQCwB8Jy0dJpA8DkM1AzpyDnSBMeaooF" }}
+          source={{ uri: product.productImage }}
           style={styles.image}
         />
       </View>
       <View style={styles.infoContainer}>
         {/* Product Information */}
-        <Text style={styles.name}>Maize (G1 Quality)</Text>
-        <Text style={styles.quality}>Quality: High-Quality Grade 1 Maize</Text>
-        <Text style={styles.price}>Price: ₹1710</Text>
+        <Text style={styles.name}>{product.productName}</Text>
+        <Text style={styles.quality}>Quality: {product.quality}</Text>
+        <Text style={styles.price}>Price: ₹{product.price}</Text>
             {/* Add to Cart Button */}
-            <Button title="Add" onPress={() => alert('Product added!')} />
+            <Pressable style={styles.addButton} onPress={() => alert('Product added!')}>
+      <Text style={styles.buttonText}>Add</Text>
+    </Pressable>
       </View>
     </TouchableOpacity>
   );
@@ -43,6 +45,22 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 10,
     overflow: 'hidden',
+  },
+  addButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    elevation: 3,
+    backgroundColor: 'green',
+    borderRadius: 8
+  },
+  buttonText: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
   },
   image: {
     width: 100,
