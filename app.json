@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Chatti",
+    "slug": "chatti",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "icon": "./commonAssets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./commonAssets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#B20A2C"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "versionCode": 5,
+      "adaptiveIcon": {
+        "foregroundImage": "./commonAssets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.softechinfra.chatti"
+    },
+    "web": {
+      "favicon": "./commonAssets/favicon.png"
+    },
+    "owner": "viveksinra",
+    "extra": {
+      "eas": {
+        "projectId": "07f2dece-1774-41f3-8919-eac1650d8321"
+      }
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
+  }
+}
