@@ -18,7 +18,7 @@ const MobileCom = ({setStep,mobileNo,setMobileNo}) => {
 
       const sendOTP = async (mobileNo) => {
         try {
-          const response = await axios.post(`${startUrl}/api/myApp/api/appAuth/user/sendotp`, {
+          const response = await axios.post(`${startUrl}/chattiApi/allCommon/userAuth/sendOtp`, {
             mobileNo: mobileNo,
           });
           // Handle the response, e.g., show a message to the user
