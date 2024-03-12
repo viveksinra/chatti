@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import OpScreen1 from '../components/OrderProcess/OpScreen1';
+import OpScreen2 from '../components/OrderProcess/OpScreen2';
+import OpScreen3 from '../components/OrderProcess/OpScreen3';
+import PaymentDetailsScreen from '../components/OrderProcess/OpScreen3';
 
-const OrderProcessScreen = () => {
+const OrderProcessScreen = ({ route }) => {
+  const { product } = route.params;
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleNext = () => {
@@ -21,24 +26,16 @@ const OrderProcessScreen = () => {
     switch (currentStep) {
       case 1:
         return (
-          <View style={styles.stepContainer}>
-            <Text>Step 1: Order Details</Text>
-            
-          </View>
+          <OpScreen1  product={product}/>
         );
       case 2:
         return (
-          <View style={styles.stepContainer}>
-            <Text>Step 2: Address Selector</Text>
-            
-          </View>
+          <OpScreen2  product={product}/>
+
         );
       case 3:
         return (
-          <View style={styles.stepContainer}>
-            <Text>Step 3: Payment Details</Text>
-           
-          </View>
+          <PaymentDetailsScreen />
         );
       default:
         return null;

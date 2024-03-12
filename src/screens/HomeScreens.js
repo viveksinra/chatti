@@ -19,6 +19,25 @@ const HomeScreens = () => {
   {_id:"sd",productName:"Maize (G3 Quality)", quality:"Quality Grade 3 Maize",price:"1710",productImage:"https://5.imimg.com/data5/MU/QR/MY-12687905/best-quality-yellow-maize.jpg"},
  ])
 
+ const getProduct = async() => {
+  const url = `${startUrl}/chattiApi/allCommon/product/getProductForPublic`;
+
+ // Retrieve the authorization token from SecureStore
+ const token = await SecureStore.getItemAsync('authToken');
+
+ // Make an API call to get the chat count from the server
+ const response = await axios.get(url, {
+   headers: {
+     Authorization: token,
+   },
+ });
+ if(response.data.variant == "success"){ 
+   apiChatCount = response.data.count;
+ }else{
+  alert("Failed to Connect to server, check your internet connection")
+ }
+}
+
   return (
 <ScrollView>
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

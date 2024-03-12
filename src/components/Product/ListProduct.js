@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 
 const ListProduct = ({product}) => {
   const navigation = useNavigation();
-  function handleShowProfile() {
-    navigation.navigate('OrderProcessScreen');
+  function sendToOrderProcess() {
+    navigation.navigate('OrderProcessScreen', { product: product });
   }
   return (
-    <TouchableOpacity style={styles.container} onPress={() => handleShowProfile()}>
+    <TouchableOpacity style={styles.container} onPress={() => sendToOrderProcess()}>
       <View style={styles.imageContainer}>
         {/* Product Image */}
         <Image
@@ -22,8 +22,8 @@ const ListProduct = ({product}) => {
         <Text style={styles.quality}>Quality: {product.quality}</Text>
         <Text style={styles.price}>Price: ₹{product.price}</Text>
             {/* Add to Cart Button */}
-            <Pressable style={styles.addButton} onPress={() => handleShowProfile()}>
-      <Text style={styles.buttonText}>Add</Text>
+            <Pressable style={styles.addButton} onPress={() => sendToOrderProcess()}>
+      <Text style={styles.buttonText}>Sell</Text>
     </Pressable>
       </View>
     </TouchableOpacity>
