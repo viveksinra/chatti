@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 const OpScreen1 = ({ product }) => {
   const [weight, setWeight] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+
   const pricePerKg = product.price / 100;
   const totalAmount = (pricePerKg * parseFloat(weight)) || 0;
   const calculationText = weight ? `₹${pricePerKg.toFixed(2)} per kg x ${weight} kg` : '';
 
   return (
+    <>
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
@@ -20,8 +23,14 @@ const OpScreen1 = ({ product }) => {
         <Text style={styles.quality}>Quality: {product.quality}</Text>
         <Text style={styles.price}>Price per Quintal: ₹{product.price}</Text>
         <Text style={styles.price}>Price per Kg: ₹{pricePerKg.toFixed(2)}</Text>
+      </View>
+     
+    </View>
+    <View style={styles.inputContainer}>
+      <View style={styles.labelInputContainer}>
+        <Text style={styles.textLabel}>Weight in kg:</Text>
         <TextInput
-          style={styles.input}
+          style={styles.textInput}
           onChangeText={setWeight}
           value={weight}
           placeholder="Enter weight in kg"
@@ -29,17 +38,31 @@ const OpScreen1 = ({ product }) => {
           returnKeyType="done"
           blurOnSubmit={true}
         />
-        <Text style={styles.calculation}>{calculationText}</Text>
-        <Text style={styles.total}>Total Amount: ₹{totalAmount.toFixed(2)}</Text>
       </View>
+      <View style={styles.labelInputContainer}>
+        <Text style={styles.textLabel}>Mobile Number:</Text>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={setMobileNumber}
+          value={mobileNumber}
+          placeholder="Enter Mobile Number"
+          keyboardType="numeric"
+          returnKeyType="done"
+          blurOnSubmit={true}
+        />
+      </View>
+      <Text style={styles.calculation}>{calculationText}</Text>
+        <Text style={styles.total}>Total Amount: ₹{totalAmount.toFixed(2)}</Text>
     </View>
+    
+   </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     padding: 10,
     marginBottom: 10,
@@ -47,6 +70,7 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderRadius: 5,
   },
+
   imageContainer: {
     marginRight: 10,
   },
@@ -75,6 +99,11 @@ const styles = StyleSheet.create({
     color: '#e74c3c',
     marginBottom: 5,
   },
+  
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
   input: {
     height: 40,
     width: '100%',
@@ -83,6 +112,39 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 10,
     marginBottom: 10,
+  },
+  button: {
+    backgroundColor: '#2ecc71',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  inputContainer: {
+    flex: 1,
+    marginLeft: 10,
+  
+  },
+    labelInputContainer:{
+    flexDirection:'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  textLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    padding: 10,
+    width: '65%',
   },
   calculation: {
     fontSize: 16,
