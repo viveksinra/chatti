@@ -4,22 +4,22 @@ const { ToastAndroid } = require("react-native");
 import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { startUrl } from '../Context/ContentContext';
-const LocalDeleteAllChat = async (clearMessages) => {
+const LocalDeleteAllOrder = async (clearMessages) => {
     try {
       await AsyncStorage.removeItem('messages');
       clearMessages();
 
       // Show a success toast on Android
-      ToastAndroid.show('All chat messages removed from this device only', ToastAndroid.SHORT);
+      ToastAndroid.show('All order messages removed from this device only', ToastAndroid.SHORT);
     } catch (error) {
       console.log('Error deleting messages from AsyncStorage:', error);
     }
   };
-const DbAndLocalDeleteAllChat = async (clearMessages) => {
+const DbAndLocalDeleteAllOrder = async (clearMessages) => {
     try {
       await AsyncStorage.removeItem('messages');
       clearMessages();
-      let url = `${startUrl}/api/myApp/api/ttg/getAiResponse/delete/allChatsByUserId`;
+      let url = `${startUrl}/api/myApp/api/ttg/getAiResponse/delete/allOrdersByUserId`;
       // Retrieve the token from SecureStore
       let token = await SecureStore.getItemAsync('authToken');
       // Set the Authorization header for the request
@@ -35,23 +35,23 @@ const DbAndLocalDeleteAllChat = async (clearMessages) => {
       );
       let myRes = response.data;
       if (myRes.variant === 'success') {
-        ToastAndroid.show('All chat messages deleted successfully', ToastAndroid.SHORT);
+        ToastAndroid.show('All order messages deleted successfully', ToastAndroid.SHORT);
       }
       // Show a success toast on Android
     } catch (error) {
       console.log('Error deleting messages from AsyncStorage:', error);
     }
   };
-const DbAndLocalDeleteOneChatId = async (removeFullOneChatId,chatId) => {
+const DbAndLocalDeleteOneOrderId = async (removeFullOneOrderId,orderId) => {
     try {
-      removeFullOneChatId(chatId);
-      let url = `${startUrl}/api/myApp/api/ttg/getAiResponse/delete/deleteChatId`;
+      removeFullOneOrderId(orderId);
+      let url = `${startUrl}/api/myApp/api/ttg/getAiResponse/delete/deleteOrderId`;
       // Retrieve the token from SecureStore
       let token = await SecureStore.getItemAsync('authToken');
       // Set the Authorization header for the request
       const response = await axios.post(
         url,
-        { chatId },
+        { orderId },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const DbAndLocalDeleteOneChatId = async (removeFullOneChatId,chatId) => {
       );
       let myRes = response.data;
       if (myRes.variant === 'success') {
-        ToastAndroid.show('One Chat Deleted', ToastAndroid.SHORT);
+        ToastAndroid.show('One Order Deleted', ToastAndroid.SHORT);
       }
       // Show a success toast on Android
       
@@ -70,4 +70,4 @@ const DbAndLocalDeleteOneChatId = async (removeFullOneChatId,chatId) => {
     }
   };
 
-  module.exports = {LocalDeleteAllChat,DbAndLocalDeleteAllChat,DbAndLocalDeleteOneChatId}
+  module.exports = {LocalDeleteAllOrder,DbAndLocalDeleteAllOrder,DbAndLocalDeleteOneOrderId}

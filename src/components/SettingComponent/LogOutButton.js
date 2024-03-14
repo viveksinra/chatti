@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import * as SecureStore from 'expo-secure-store';
 import { useNavigation } from '@react-navigation/native';
 import { AppContext } from '../../../context/appContext';
-const { LocalDeleteAllChat, DbAndLocalDeleteAllChat } = require("../../utils/deleteChats");
+const { LocalDeleteAllOrder, DbAndLocalDeleteAllOrder } = require("../../utils/deleteOrders");
 
 
 const LogOutButton = () => {
@@ -31,7 +31,7 @@ const LogOutButton = () => {
                 text: t("logout.one"),
                 onPress: async() => {
                     await SecureStore.deleteItemAsync('authToken');
-                    LocalDeleteAllChat(clearMessages);
+                    LocalDeleteAllOrder(clearMessages);
                     setIsSignedIn(false);
 
                 },

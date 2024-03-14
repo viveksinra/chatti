@@ -2,15 +2,15 @@ import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import ContentContext from '../../Context/ContentContext';
-const image = { uri: ContentContext.chatHisBag };
+const image = { uri: ContentContext.orderHisBag };
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
-const NoChatHistory = () => {
+const NoOrderHistory = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
 
-  const handleStartChat = () => {
+  const handleStartOrder = () => {
     navigation.goBack();
   };
 
@@ -21,10 +21,10 @@ const NoChatHistory = () => {
         style={styles.backgroundImage}
       >
         <View style={styles.overlay}>
-          <Text style={styles.noChatText}>{t('chatHis.two')}</Text>
-          <TouchableOpacity style={styles.refreshButton} onPress={handleStartChat}>
+          <Text style={styles.noOrderText}>{t('orderHis.two')}</Text>
+          <TouchableOpacity style={styles.refreshButton} onPress={handleStartOrder}>
             <FontAwesome name="comments" size={24} color="white" />
-            <Text style={styles.buttonText}>{t('chatHis.three')}</Text>
+            <Text style={styles.buttonText}>{t('orderHis.three')}</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
-  noChatText: {
+  noOrderText: {
     color: 'white',
     fontSize: 24,
     marginBottom: 20,
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NoChatHistory;
+export default NoOrderHistory;

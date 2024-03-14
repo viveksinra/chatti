@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import { startUrl } from '../Context/ContentContext';
-const { LocalDeleteAllChat, DbAndLocalDeleteAllChat } = require("../utils/deleteChats");
+const { LocalDeleteAllChat, DbAndLocalDeleteAllChat } = require("./deleteOrders");
 
 
 const checkAndUpdateChatHistory = async (messages,clearMessages,replaceMessagesInAsyncStorageAndContext) => {
