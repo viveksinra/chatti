@@ -39,6 +39,10 @@ const OpScreen1 = ({ product }) => {
           blurOnSubmit={true}
         />
       </View>
+      {weight && <View style={styles.totalContainer}>
+      <Text style={styles.calculation}>{calculationText}</Text>
+        <Text style={styles.total}>: ₹{totalAmount.toFixed(2)}</Text>
+        </View>}
       <View style={styles.labelInputContainer}>
         <Text style={styles.textLabel}>Mobile Number:</Text>
         <TextInput
@@ -51,8 +55,7 @@ const OpScreen1 = ({ product }) => {
           blurOnSubmit={true}
         />
       </View>
-      <Text style={styles.calculation}>{calculationText}</Text>
-        <Text style={styles.total}>Total Amount: ₹{totalAmount.toFixed(2)}</Text>
+    
     </View>
     
    </>
@@ -155,6 +158,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#2ecc71',
+  },
+  totalContainer:{
+    flexDirection:'row',
+    alignItems: 'flex-start',
+
+    marginBottom: 20,
   },
 });
 
