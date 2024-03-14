@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, ScrollView } from 'react-native';
 
 const OpScreen1 = ({ product }) => {
   const [weight, setWeight] = useState('');
@@ -10,7 +10,7 @@ const OpScreen1 = ({ product }) => {
   const calculationText = weight ? `₹${pricePerKg.toFixed(2)} per kg x ${weight} kg` : '';
 
   return (
-    <>
+    <ScrollView>
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
@@ -58,7 +58,7 @@ const OpScreen1 = ({ product }) => {
     
     </View>
     
-   </>
+   </ScrollView>
   );
 };
 
