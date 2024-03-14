@@ -45,21 +45,21 @@ const PaymentDetailsScreen = () => {
       case 'account':
         return (
           <View style={styles.inputContainer}>
-            {accountDetails.accountNumber && <Label text="Enter Account Number" />}
+            {accountDetails.accountNumber && <Label text="Account Number" />}
             <TextInput
               style={styles.input}
               onChangeText={text => setAccountDetails({ ...accountDetails, accountNumber: text })}
               value={accountDetails.accountNumber}
               placeholder="Enter Account Number"
             />
-            {accountDetails.accountHolderName && <Label text="Enter Account Holder Name" />}
+            {accountDetails.accountHolderName && <Label text="Account Holder Name" />}
             <TextInput
               style={styles.input}
               onChangeText={text => setAccountDetails({ ...accountDetails, accountHolderName: text })}
               value={accountDetails.accountHolderName}
               placeholder="Enter Account Holder Name"
             />
-            {accountDetails.ifscCode && <Label text="Enter IFSC Code" />}
+            {accountDetails.ifscCode && <Label text="IFSC Code" />}
             <TextInput
               style={styles.input}
               onChangeText={text => setAccountDetails({ ...accountDetails, ifscCode: text })}
@@ -90,7 +90,6 @@ const PaymentDetailsScreen = () => {
 
       {selectedPaymentMethod && renderInputFields(selectedPaymentMethod)}
 
-      <Button title="Pay Now" onPress={handlePayment} disabled={!selectedPaymentMethod} />
     </View>
   );
 };
