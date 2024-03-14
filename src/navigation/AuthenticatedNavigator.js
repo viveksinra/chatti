@@ -7,6 +7,7 @@ import NotImplementedScreen from '../screens/NotImplementedScreen';
 import { useTranslation } from 'react-i18next';
 import ProfileScreen from '../screens/ProfileScreen';
 import OrderProcessScreen from '../screens/OrderProcessScreen';
+import OneOrderScreen from '../screens/OneOrderScreen';
 import { ActivityIndicator, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // Import the checkAndUpdateChatHistory function
@@ -59,6 +60,11 @@ const AuthenticatedNavigator = () => {
         name="OrderProcessScreen"
         component={OrderProcessScreen}
         options={{ title: 'Order Process' }}
+      />
+      <Stack.Screen
+        name="OneOrderScreen"
+        component={OneOrderScreen}
+        options={{ title: 'Order Details' }}
       />
       <Stack.Screen name="Contacts" component={NotImplementedScreen} />
     </Stack.Navigator>

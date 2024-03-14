@@ -1,10 +1,15 @@
 // OrderListItem.js
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const OrderListItem = ({ order }) => {
+  const navigation = useNavigation();
+  function handleShowProfile() {
+    navigation.navigate('OneOrderScreen');
+  }
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handleShowProfile}>
       <Image source={{ uri: order.product.productImage }} style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.productName}>{order.product.productName}</Text>
@@ -13,7 +18,7 @@ const OrderListItem = ({ order }) => {
         <Text>Weight: {order.weightInKg} kg</Text>
         <Text>Mobile Number: {order.mobileNumber}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
