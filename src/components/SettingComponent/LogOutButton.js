@@ -1,18 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { TouchableOpacity, View, Text, ToastAndroid,Alert } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import { MessageContext } from './../../../src/components/Message/MessageProvider';
+
 import { useTranslation } from 'react-i18next';
 import * as SecureStore from 'expo-secure-store';
 import { useNavigation } from '@react-navigation/native';
 import { AppContext } from '../../../context/appContext';
-const { LocalDeleteAllOrder, DbAndLocalDeleteAllOrder } = require("../../utils/deleteOrders");
 
 
 const LogOutButton = () => {
   const { t } = useTranslation();
-  const { clearMessages } = useContext(MessageContext);
+
   const navigation = useNavigation();
   const { setIsSignedIn } = useContext(AppContext);
 
@@ -31,7 +29,6 @@ const LogOutButton = () => {
                 text: t("logout.one"),
                 onPress: async() => {
                     await SecureStore.deleteItemAsync('authToken');
-                    LocalDeleteAllOrder(clearMessages);
                     setIsSignedIn(false);
 
                 },
