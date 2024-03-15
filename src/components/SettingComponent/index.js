@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import OtherComponent from './OtherComponent';
-import ThemeSelector from './ThemeSelector';
+
 import LanguageSelector from './LanguageSelector';
 import ProfileButton from './ProfileButton';
 import DeleteChatButton from './DeleteChatButton';
