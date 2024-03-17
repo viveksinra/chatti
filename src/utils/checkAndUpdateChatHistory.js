@@ -9,7 +9,7 @@ const checkAndUpdateChatHistory = async (messages,clearMessages,replaceMessagesI
   const allMsgId = Object.keys(messages);
 
     const localChatCount = allMsgId.length;
-    const url = `${startUrl}/api/myApp/api/ttg/getAiResponse/getChat/count`;
+    const url = `${startUrl}/chattiApi/allCommon/getChat/count`;
 
     // Retrieve the authorization token from SecureStore
     const token = await SecureStore.getItemAsync('authToken');
@@ -29,7 +29,7 @@ console.log({'apiChat':apiChatCount,localChatCount})
     // if (localChatCount !== apiChatCount) {
     if ("localChatCount" !== "apiChatCount") {
       // If counts mismatch, make another API call to get all chats
-      const allChatsUrl = `${startUrl}/api/myApp/api/ttg/getAiResponse/getChat/oneUser`;
+      const allChatsUrl = `${startUrl}/chattiApi/allCommon/getChat/oneUser`;
 
       const allChatsResponse = await axios.get(allChatsUrl, {
         headers: {

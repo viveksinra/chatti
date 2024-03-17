@@ -49,7 +49,7 @@ const ProfileScreen = () => {
       formData.append('userImage', { uri: localUri, name: filename, type, });
     
       try {
-        let url = `${startUrl}/api/myApp/api/ttg/getAiResponse/profile/userImage`;
+        let url = `${startUrl}/chattiApi/allCommon/profile/userImage`;
         let token = await SecureStore.getItemAsync('authToken');
     
         const response = await axios.post(url, formData, {
@@ -73,7 +73,7 @@ const ProfileScreen = () => {
 
   const commonUpdateFunction = async (requestData, type) => {
     try {
-      let url = `${startUrl}/api/myApp/api/ttg/getAiResponse/profile/userData`;
+      let url = `${startUrl}/chattiApi/allCommon/profile/userData`;
       // Retrieve the token from SecureStore
       let token = await SecureStore.getItemAsync('authToken');
       // Set the Authorization header for the request

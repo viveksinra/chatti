@@ -28,7 +28,7 @@ const handleSetData = async ({ setName, setStatus, setUserImage, setMobileNumber
         console.log('Profile data not found in local storage');
       }
         // Step 3: Make API call to fetch additional data
-        const url = `${startUrl}/api/myApp/api/ttg/getAiResponse/getProfile/oneUser`;
+        const url = `${startUrl}/chattiApi/allCommon/getProfile/oneUser`;
         const token = await SecureStore.getItemAsync('authToken');
   
         const response = await axios.get(url, {

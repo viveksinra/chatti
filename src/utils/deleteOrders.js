@@ -19,7 +19,7 @@ const DbAndLocalDeleteAllOrder = async (clearMessages) => {
     try {
       await AsyncStorage.removeItem('messages');
       clearMessages();
-      let url = `${startUrl}/api/myApp/api/ttg/getAiResponse/delete/allOrdersByUserId`;
+      let url = `${startUrl}/chattiApi/allCommon/delete/allOrdersByUserId`;
       // Retrieve the token from SecureStore
       let token = await SecureStore.getItemAsync('authToken');
       // Set the Authorization header for the request
@@ -45,7 +45,7 @@ const DbAndLocalDeleteAllOrder = async (clearMessages) => {
 const DbAndLocalDeleteOneOrderId = async (removeFullOneOrderId,orderId) => {
     try {
       removeFullOneOrderId(orderId);
-      let url = `${startUrl}/api/myApp/api/ttg/getAiResponse/delete/deleteOrderId`;
+      let url = `${startUrl}/chattiApi/allCommon/delete/deleteOrderId`;
       // Retrieve the token from SecureStore
       let token = await SecureStore.getItemAsync('authToken');
       // Set the Authorization header for the request
