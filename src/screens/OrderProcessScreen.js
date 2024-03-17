@@ -8,6 +8,20 @@ import PaymentDetailsScreen from '../components/OrderProcess/OpScreen3';
 const OrderProcessScreen = ({ route }) => {
   const { product } = route.params;
   const [currentStep, setCurrentStep] = useState(1);
+// order step 1 == order details
+  const [weight, setWeight] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+// order step 2 == address
+const [location, setLocation] = useState(null);
+const [address, setAddress] = useState({});
+const [flat, setFlat] = useState("");
+// Order step 3 == Payment method selection
+const [selectedPaymentMethod, setSelectedPaymentMethod] = useState({label:"",id:""});
+const [upiId, setUpiId] = useState('');
+const [accountNumber, setAccountNumber] = useState('');
+const [accountHolderName, setAccountHolderName] = useState('');
+const [ifsc, setIfsc] = useState('');
+
 
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
@@ -26,16 +40,41 @@ const OrderProcessScreen = ({ route }) => {
     switch (currentStep) {
       case 1:
         return (
-          <OpScreen1  product={product}/>
+          <OpScreen1  
+          product={product}
+          weight={weight}
+          setWeight={setWeight}
+          mobileNumber={mobileNumber}
+          setMobileNumber={setMobileNumber}
+          />
         );
       case 2:
         return (
-          <OpScreen2  product={product}/>
+          <OpScreen2  
+          product={product}
+          location={location}
+          setLocation={setLocation}
+          address={address}
+          setAddress={setAddress}
+          flat={flat}
+          setFlat={setFlat}
+          />
 
         );
       case 3:
         return (
-          <PaymentDetailsScreen />
+          <PaymentDetailsScreen
+          selectedPaymentMethod={selectedPaymentMethod}
+          setSelectedPaymentMethod={setSelectedPaymentMethod}
+          upiId={upiId}
+          setUpiId={setUpiId}
+          accountNumber={accountNumber}
+          setAccountNumber={setAccountNumber}
+          accountHolderName={accountHolderName}
+          setAccountHolderName={setAccountHolderName}
+          ifsc={ifsc}
+          setIfsc={setIfsc}
+          />
         );
       default:
         return null;

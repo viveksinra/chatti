@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, ScrollView } from 'react-native';
 
-const OpScreen1 = ({ product }) => {
-  const [weight, setWeight] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
+const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) => {
+
 
   const pricePerKg = product.price / 100;
   const totalAmount = (pricePerKg * parseFloat(weight)) || 0;

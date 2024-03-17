@@ -4,11 +4,9 @@ import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons'; // Make sure to install @expo/vector-icons
 
-const OpScreen2 = () => {
-  const [location, setLocation] = useState(null);
+const OpScreen2 = ({location, setLocation,address, setAddress,flat, setFlat}) => {
   const [errorMsg, setErrorMsg] = useState(null);
-  const [address, setAddress] = useState({});
-  const [flat, setFlat] = useState("");
+
   const mapRef = useRef(null);
 
   useEffect(() => {

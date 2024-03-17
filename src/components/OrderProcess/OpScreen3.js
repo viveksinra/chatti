@@ -5,22 +5,13 @@ const Label = ({ text }) => {
   return <Text style={styles.label}>{text}</Text>;
 };
 
-const PaymentDetailsScreen = () => {
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
-  const [upiId, setUpiId] = useState('');
-  const [accountDetails, setAccountDetails] = useState({
-    accountNumber: '',
-    accountHolderName: '',
-    ifscCode: '',
-  });
-
+const PaymentDetailsScreen = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setUpiId, accountNumber, setAccountNumber, accountHolderName, setAccountHolderName, ifsc, setIfsc}) => {
   const handlePaymentMethodSelection = (method) => {
     setSelectedPaymentMethod(method);
-    setAccountDetails({ // Clear account details on method change
-      accountNumber: '',
-      accountHolderName: '',
-      ifscCode: '',
-    });
+    setUpiId('');
+    setAccountNumber('');
+    setAccountHolderName('');
+    setIfsc('');
   };
 
   const handlePayment = () => {
@@ -45,25 +36,25 @@ const PaymentDetailsScreen = () => {
       case 'account':
         return (
           <View style={styles.inputContainer}>
-            {accountDetails.accountNumber && <Label text="Account Number" />}
+            {accountNumber && <Label text="Account Number" />}
             <TextInput
               style={styles.input}
-              onChangeText={text => setAccountDetails({ ...accountDetails, accountNumber: text })}
-              value={accountDetails.accountNumber}
+              onChangeText={text => setAccountNumber(text)}
+              value={accountNumber}
               placeholder="Enter Account Number"
             />
-            {accountDetails.accountHolderName && <Label text="Account Holder Name" />}
+            {accountHolderName && <Label text="Account Holder Name" />}
             <TextInput
               style={styles.input}
-              onChangeText={text => setAccountDetails({ ...accountDetails, accountHolderName: text })}
-              value={accountDetails.accountHolderName}
+              onChangeText={text => setAccountHolderName(text)}
+              value={accountHolderName}
               placeholder="Enter Account Holder Name"
             />
-            {accountDetails.ifscCode && <Label text="IFSC Code" />}
+            {ifsc && <Label text="IFSC Code" />}
             <TextInput
               style={styles.input}
-              onChangeText={text => setAccountDetails({ ...accountDetails, ifscCode: text })}
-              value={accountDetails.ifscCode}
+              onChangeText={text => setIfsc(text )}
+              value={ifsc}
               placeholder="Enter IFSC Code"
             />
           </View>
@@ -77,18 +68,18 @@ const PaymentDetailsScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Select Payment Method:</Text>
       <View style={styles.radioButtonContainer}>
-        <TouchableOpacity style={selectedPaymentMethod === 'cash' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection('cash')}>
+        <TouchableOpacity style={selectedPaymentMethod.id === 'cash' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection({label:"Cash",id:"cash"})}>
           <Text style={styles.radioText}>Cash</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={selectedPaymentMethod === 'upi' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection('upi')}>
+        <TouchableOpacity style={selectedPaymentMethod.id === 'upi' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection({label:"Upi",id:"upi"})}>
           <Text style={styles.radioText}>UPI</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={selectedPaymentMethod === 'account' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection('account')}>
+        <TouchableOpacity style={selectedPaymentMethod.id === 'account' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection({label:"Account",id:"account"})}>
           <Text style={styles.radioText}>Bank Account</Text>
         </TouchableOpacity>
       </View>
 
-      {selectedPaymentMethod && renderInputFields(selectedPaymentMethod)}
+      {selectedPaymentMethod && renderInputFields(selectedPaymentMethod.id)}
 
     </View>
   );
