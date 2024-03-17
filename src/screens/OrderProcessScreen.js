@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ToastAndroid } from 'react-native';
 import OpScreen1 from '../components/OrderProcess/OpScreen1';
 import OpScreen2 from '../components/OrderProcess/OpScreen2';
 import OpScreen3 from '../components/OrderProcess/OpScreen3';
 import PaymentDetailsScreen from '../components/OrderProcess/OpScreen3';
+import * as SecureStore from 'expo-secure-store';
+import axios from 'axios';
+import { startUrl } from '../Context/ContentContext';
 
 const OrderProcessScreen = ({ route }) => {
   const { product } = route.params;
@@ -30,9 +33,35 @@ const [ifsc, setIfsc] = useState('');
   const handleBack = () => {
     setCurrentStep(currentStep - 1);
   };
-
-  const handleFinish = () => {
+  const SaveOrderFunction = async () => {
+    try {
+      let url = `${startUrl}/chattiApi/allCommon/order/saveOrder`;
+      // Retrieve the token from SecureStore
+      let token = await SecureStore.getItemAsync('authToken');
+      // Set the Authorization header for the request
+      const response = await axios.post(
+        url,
+        {product,weight, mobileNumber, location, address, flat, selectedPaymentMethod,  upiId, setUpiId, accountNumber,  accountHolderName,  ifsc,  },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+        }
+      );
+      let myRes = response.data;
+      if (myRes.variant === 'success') {
+        ToastAndroid.show(myRes.message, ToastAndroid.SHORT);
+      }
+    } catch (error) {
+      ToastAndroid.show('some error occurred ', ToastAndroid.SHORT);
+      console.log('Some error occurred while sending or setting the message' + error);
+    }
+  };
+  const handleFinish = async() => {
     // Handle submission of form data
+    console.log("gettin called")
+    await SaveOrderFunction()
     alert('Form submitted successfully!');
   };
 

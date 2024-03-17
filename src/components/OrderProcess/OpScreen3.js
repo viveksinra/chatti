@@ -19,8 +19,8 @@ const PaymentDetailsScreen = ({selectedPaymentMethod, setSelectedPaymentMethod, 
     console.log('Payment initiated:', selectedPaymentMethod);
   };
 
-  const renderInputFields = (paymentMethod) => {
-    switch (paymentMethod) {
+  const renderInputFields = (newPaymentMethod) => {
+    switch (newPaymentMethod) {
       case 'upi':
         return (
           <View style={styles.inputContainer}>
