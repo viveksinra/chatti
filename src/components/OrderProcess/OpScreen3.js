@@ -5,7 +5,7 @@ const Label = ({ text }) => {
   return <Text style={styles.label}>{text}</Text>;
 };
 
-const PaymentDetailsScreen = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setUpiId, accountNumber, setAccountNumber, accountHolderName, setAccountHolderName, ifsc, setIfsc}) => {
+const OpScreen3 = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setUpiId, accountNumber, setAccountNumber, accountHolderName, setAccountHolderName, ifsc, setIfsc}) => {
   const handlePaymentMethodSelection = (method) => {
     setSelectedPaymentMethod(method);
     setUpiId('');
@@ -14,10 +14,6 @@ const PaymentDetailsScreen = ({selectedPaymentMethod, setSelectedPaymentMethod, 
     setIfsc('');
   };
 
-  const handlePayment = () => {
-    // Implement payment logic based on selected method
-    console.log('Payment initiated:', selectedPaymentMethod);
-  };
 
   const renderInputFields = (newPaymentMethod) => {
     switch (newPaymentMethod) {
@@ -138,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentDetailsScreen;
+export default OpScreen3;

@@ -1,22 +1,29 @@
-// OrderListItem.js
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const OrderListItem = ({ order }) => {
   const navigation = useNavigation();
+
   function handleShowProfile() {
     navigation.navigate('OneOrderScreen');
   }
+  const pricePerKg = order.product.price / 100;
+  const totalAmount = (pricePerKg * parseFloat(order.weightInKg)) || 0;
+  const calculationText =  `₹${pricePerKg.toFixed(2)} x ${order.weightInKg} kg`;
+
   return (
     <TouchableOpacity style={styles.container} onPress={handleShowProfile}>
       <Image source={{ uri: order.product.productImage }} style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.productName}>{order.product.productName}</Text>
-        <Text>{order.product.quality}</Text>
-        <Text>Price: ${order.product.price}</Text>
-        <Text>Weight: {order.weightInKg} kg</Text>
-        <Text>Mobile Number: {order.mobileNumber}</Text>
+        <Text style={styles.status}>Status: {order.orderStatus.label}</Text>
+        <Text style={styles.date}>Date: {order.orderDate}</Text>
+         <View style={styles.totalContainer}>
+           <Text style={styles.calculation}>{calculationText}</Text>
+        <Text style={styles.total}>: ₹{totalAmount.toFixed(2)}</Text>
+        </View>
+    
       </View>
     </TouchableOpacity>
   );
@@ -28,7 +35,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 30,
     borderWidth: 1,
     borderColor: '#ddd',
@@ -45,6 +52,31 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  calculation: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 5,
+  },
+  total: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#2ecc71',
+  },
+  totalContainer:{
+    flexDirection:'row',
+    alignItems: 'flex-start',
+    marginBottom: 2,
+  },
+  status: {
+    fontSize: 16,
+    color: '#555',
+    marginBottom: 5,
+  },
+  date: {
+    fontSize: 16,
+    color: '#555',
+    marginBottom: 5,
   },
 });
 

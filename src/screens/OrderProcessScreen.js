@@ -3,10 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ToastAndroid } fr
 import OpScreen1 from '../components/OrderProcess/OpScreen1';
 import OpScreen2 from '../components/OrderProcess/OpScreen2';
 import OpScreen3 from '../components/OrderProcess/OpScreen3';
-import PaymentDetailsScreen from '../components/OrderProcess/OpScreen3';
 import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { startUrl } from '../Context/ContentContext';
+import { useNavigation } from '@react-navigation/native';
+
 
 const OrderProcessScreen = ({ route }) => {
   const { product } = route.params;
@@ -24,6 +25,7 @@ const [upiId, setUpiId] = useState('');
 const [accountNumber, setAccountNumber] = useState('');
 const [accountHolderName, setAccountHolderName] = useState('');
 const [ifsc, setIfsc] = useState('');
+const navigation = useNavigation();
 
 
   const handleNext = () => {
@@ -60,9 +62,10 @@ const [ifsc, setIfsc] = useState('');
   };
   const handleFinish = async() => {
     // Handle submission of form data
-    console.log("gettin called")
     await SaveOrderFunction()
-    alert('Form submitted successfully!');
+    alert('Ordered successfully!');
+    navigation.navigate('AllOrdersScreen');
+
   };
 
   const renderStepContent = () => {
@@ -92,7 +95,7 @@ const [ifsc, setIfsc] = useState('');
         );
       case 3:
         return (
-          <PaymentDetailsScreen
+          <OpScreen3
           selectedPaymentMethod={selectedPaymentMethod}
           setSelectedPaymentMethod={setSelectedPaymentMethod}
           upiId={upiId}
