@@ -37,7 +37,9 @@ const ProfileScreen = () => {
     if (!result.canceled) {
       setUserImage(result.uri);
     
-      let localUri = result.uri;
+      let localUri = result.assets[0].uri;
+      console.log(result)
+      console.log(localUri)
       let filename = localUri.split('/').pop();
     
       // Infer the type of the image
