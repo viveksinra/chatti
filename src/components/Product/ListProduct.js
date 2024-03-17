@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const ListProduct = ({product}) => {
+  const { t } = useTranslation();
+
   const navigation = useNavigation();
   function sendToOrderProcess() {
     navigation.navigate('OrderProcessScreen', { product: product });
@@ -18,12 +21,12 @@ const ListProduct = ({product}) => {
       </View>
       <View style={styles.infoContainer}>
         {/* Product Information */}
-        <Text style={styles.name}>{product.productName}</Text>
-        <Text style={styles.quality}>Quality: {product.quality}</Text>
-        <Text style={styles.price}>Price: ₹{product.price}</Text>
+        <Text style={styles.name}>{ (t('LanguageCode') === "en-IN" )? product.productName : product.productNameHindi}</Text>
+        <Text style={styles.quality}>{t('product.one')} { (t('LanguageCode') === "en-IN" )? product.quality : product.qualityHindi}</Text>
+        <Text style={styles.price}>{t('product.two')}{product.price}</Text>
             {/* Add to Cart Button */}
             <Pressable style={styles.addButton} onPress={() => sendToOrderProcess()}>
-      <Text style={styles.buttonText}>Sell</Text>
+      <Text style={styles.buttonText}>{t('product.three')}</Text>
     </Pressable>
       </View>
     </TouchableOpacity>
@@ -58,7 +61,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     elevation: 3,
     backgroundColor: 'green',
-    borderRadius: 8
+    borderRadius: 8,
+    marginTop:'20px'
   },
   buttonText: {
     fontSize: 16,
