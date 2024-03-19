@@ -2,9 +2,11 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import { FontAwesome } from '@expo/vector-icons';
 
 const ListProduct = ({product}) => {
   const { t } = useTranslation();
+  const pricePerKg = product.price / 100;
 
   const navigation = useNavigation();
   function sendToOrderProcess() {
@@ -23,10 +25,12 @@ const ListProduct = ({product}) => {
         {/* Product Information */}
         <Text style={styles.name}>{ (t('LanguageCode') === "en-IN" )? product.productName : product.productNameHindi}</Text>
         <Text style={styles.quality}>{t('product.one')} { (t('LanguageCode') === "en-IN" )? product.quality : product.qualityHindi}</Text>
-        <Text style={styles.price}>{t('product.two')}{product.price}</Text>
+        <Text style={styles.price}>{t('product.two')}{product.price}/quintal</Text>
+          
             {/* Add to Cart Button */}
             <Pressable style={styles.addButton} onPress={() => sendToOrderProcess()}>
-      <Text style={styles.buttonText}>{t('product.three')}</Text>
+      <Text style={styles.buttonText}>{t('product.three')}     </Text>
+      <FontAwesome name="arrow-right" size={24} color="white" />
     </Pressable>
       </View>
     </TouchableOpacity>
@@ -55,17 +59,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   addButton: {
+    flexDirection:"row",
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 32,
-    elevation: 3,
-    backgroundColor: 'green',
+    elevation: 10,
+    backgroundColor: '#856201',
     borderRadius: 8,
-    marginTop:'20px'
+    marginTop:10
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
@@ -90,9 +95,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   price: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#e74c3c',
+    color: 'green',
+    marginBottom: 5,
   },
 });
 

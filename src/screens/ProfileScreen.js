@@ -35,7 +35,6 @@ const ProfileScreen = () => {
     });
 
     if (!result.canceled) {
-      setUserImage(result.uri);
     
       let localUri = result.assets[0].uri;
       console.log(result)
@@ -63,6 +62,7 @@ const ProfileScreen = () => {
     
         let myRes = response.data;
         if (myRes.variant === "success") {
+    handleSetData({ setName, setStatus, setUserImage, setMobileNumber });
           ToastAndroid.show('Profile Picture Updated', ToastAndroid.SHORT);
         }
       } catch (error) {
