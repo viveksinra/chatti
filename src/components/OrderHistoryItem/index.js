@@ -5,20 +5,21 @@ import { useNavigation } from '@react-navigation/native';
 const OrderListItem = ({ order }) => {
   const navigation = useNavigation();
 
-  function handleShowProfile() {
-    navigation.navigate('OneOrderScreen');
+  function handleOneOrder() {
+    navigation.navigate('OneOrderScreen', { orderId: order._id });
   }
   const pricePerKg = order.product.price / 100;
   const totalAmount = (pricePerKg * parseFloat(order.weightInKg)) || 0;
   const calculationText =  `₹${pricePerKg.toFixed(2)} x ${order.weightInKg} kg`;
 
   return (
-    <TouchableOpacity style={styles.container} onPress={handleShowProfile}>
+    <TouchableOpacity style={styles.container} onPress={handleOneOrder}>
       <Image source={{ uri: order.product.productImage }} style={styles.image} />
       <View style={styles.details}>
+      <Text style={styles.date}>Date: {order.orderDate}</Text>
+
         <Text style={styles.productName}>{order.product.productName}</Text>
         <Text style={styles.status}>Status: {order.orderStatus.label}</Text>
-        <Text style={styles.date}>Date: {order.orderDate}</Text>
          <View style={styles.totalContainer}>
            <Text style={styles.calculation}>{calculationText}</Text>
         <Text style={styles.total}>: ₹{totalAmount.toFixed(2)}</Text>
@@ -70,12 +71,12 @@ const styles = StyleSheet.create({
   },
   status: {
     fontSize: 16,
-    color: '#555',
+    color: '#020275',
     marginBottom: 5,
   },
   date: {
     fontSize: 16,
-    color: '#555',
+    color: '#6e7502',
     marginBottom: 5,
   },
 });
