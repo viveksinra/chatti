@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ToastAndroid } from 'react-native';
 import OpScreen1 from '../components/OrderProcess/OpScreen1';
 import OpScreen2 from '../components/OrderProcess/OpScreen2';
@@ -7,26 +7,35 @@ import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { startUrl } from '../Context/ContentContext';
 import { useNavigation } from '@react-navigation/native';
-
+import GeneralLoading from '../components/General/GeneralLoading';
 
 const OrderProcessScreen = ({ route }) => {
+  const [mobileNumber, setMobileNumber] = useState("");
   const { product } = route.params;
   const [currentStep, setCurrentStep] = useState(1);
-// order step 1 == order details
   const [weight, setWeight] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
-// order step 2 == address
-const [location, setLocation] = useState(null);
-const [address, setAddress] = useState({});
-const [flat, setFlat] = useState("");
-// Order step 3 == Payment method selection
-const [selectedPaymentMethod, setSelectedPaymentMethod] = useState({label:"",id:""});
-const [upiId, setUpiId] = useState('');
-const [accountNumber, setAccountNumber] = useState('');
-const [accountHolderName, setAccountHolderName] = useState('');
-const [ifsc, setIfsc] = useState('');
-const navigation = useNavigation();
+  const [location, setLocation] = useState(null);
+  const [address, setAddress] = useState({});
+  const [flat, setFlat] = useState("");
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState({ label: "", id: "" });
+  const [upiId, setUpiId] = useState('');
+  const [accountNumber, setAccountNumber] = useState('');
+  const [accountHolderName, setAccountHolderName] = useState('');
+  const [ifsc, setIfsc] = useState('');
+  const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const MobileNo = await SecureStore.getItemAsync('mobileNo');
+        setMobileNumber(MobileNo);
+      } catch (error) {
+        console.error('Error fetching mobile number:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
@@ -35,79 +44,47 @@ const navigation = useNavigation();
   const handleBack = () => {
     setCurrentStep(currentStep - 1);
   };
+
   const SaveOrderFunction = async () => {
+    setLoading(true);
     try {
-      let url = `${startUrl}/chattiApi/allCommon/order/saveOrder`;
-      // Retrieve the token from SecureStore
-      let token = await SecureStore.getItemAsync('authToken');
-      // Set the Authorization header for the request
+      const url = `${startUrl}/chattiApi/allCommon/order/saveOrder`;
+      const token = await SecureStore.getItemAsync('authToken');
       const response = await axios.post(
         url,
-        {product,weight, mobileNumber, location, address, flat, selectedPaymentMethod,  upiId, setUpiId, accountNumber,  accountHolderName,  ifsc,  },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-        }
+        { product, weight, mobileNumber, location, address, flat, selectedPaymentMethod, upiId, accountNumber, accountHolderName, ifsc },
+        { headers: { 'Content-Type': 'application/json', Authorization: token } }
       );
-      let myRes = response.data;
-      if (myRes.variant === 'success') {
+      const myRes = response.data;
+      if (myRes?.message) {
         ToastAndroid.show(myRes.message, ToastAndroid.SHORT);
+      } else {
+        ToastAndroid.show("Failed to Place Order", ToastAndroid.SHORT);
+      }
+      if (myRes.variant === "success") {
+        navigation.navigate('AllOrdersScreen');
       }
     } catch (error) {
-      ToastAndroid.show('some error occurred ', ToastAndroid.SHORT);
-      console.log('Some error occurred while sending or setting the message' + error);
+      ToastAndroid.show('Some error occurred', ToastAndroid.SHORT);
+      console.error('Error saving order:', error);
+    } finally {
+      setLoading(false);
     }
   };
-  const handleFinish = async() => {
-    // Handle submission of form data
-    await SaveOrderFunction()
-    alert('Ordered successfully!');
-    navigation.navigate('AllOrdersScreen');
 
+  const handleFinish = () => {
+    setLoading(true);
+    SaveOrderFunction();
   };
 
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
-        return (
-          <OpScreen1  
-          product={product}
-          weight={weight}
-          setWeight={setWeight}
-          mobileNumber={mobileNumber}
-          setMobileNumber={setMobileNumber}
-          />
-        );
+        return <OpScreen1 product={product} weight={weight} setWeight={setWeight} mobileNumber={mobileNumber} setMobileNumber={setMobileNumber} />;
       case 2:
-        return (
-          <OpScreen2  
-          product={product}
-          location={location}
-          setLocation={setLocation}
-          address={address}
-          setAddress={setAddress}
-          flat={flat}
-          setFlat={setFlat}
-          />
-
-        );
+        return <OpScreen2 product={product} location={location} setLocation={setLocation} address={address} setAddress={setAddress} flat={flat} setFlat={setFlat} />;
       case 3:
-        return (
-          <OpScreen3
-          selectedPaymentMethod={selectedPaymentMethod}
-          setSelectedPaymentMethod={setSelectedPaymentMethod}
-          upiId={upiId}
-          setUpiId={setUpiId}
-          accountNumber={accountNumber}
-          setAccountNumber={setAccountNumber}
-          accountHolderName={accountHolderName}
-          setAccountHolderName={setAccountHolderName}
-          ifsc={ifsc}
-          setIfsc={setIfsc}
-          />
-        );
+        return <OpScreen3 selectedPaymentMethod={selectedPaymentMethod} setSelectedPaymentMethod={setSelectedPaymentMethod} upiId={upiId} setUpiId={setUpiId} accountNumber={accountNumber} setAccountNumber={setAccountNumber} accountHolderName={accountHolderName} setAccountHolderName={setAccountHolderName} ifsc={ifsc} setIfsc={setIfsc} />;
       default:
         return null;
     }
@@ -115,6 +92,7 @@ const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
+      <GeneralLoading loading={loading} loadingText={'Placing your Order'} />
       <View style={styles.stepperContainer}>
         <TouchableOpacity onPress={() => setCurrentStep(1)}>
           <Text style={[styles.stepText, currentStep === 1 && styles.activeStepText]}>1</Text>
@@ -134,13 +112,13 @@ const navigation = useNavigation();
       </ScrollView>
       <View style={styles.buttonContainer}>
         <View style={styles.buttonWrapper}>
-       
-            <TouchableOpacity style={currentStep === 1 ? styles.disabledButton : styles.button}  
-            disabled={currentStep === 1} 
-            onPress={handleBack}>
-              <Text style={styles.buttonText}>Back</Text>
-            </TouchableOpacity>
-          
+          <TouchableOpacity
+            style={currentStep === 1 ? styles.disabledButton : styles.button}
+            disabled={currentStep === 1}
+            onPress={handleBack}
+          >
+            <Text style={styles.buttonText}>Back</Text>
+          </TouchableOpacity>
           {currentStep !== 3 ? (
             <TouchableOpacity style={styles.button} onPress={handleNext}>
               <Text style={styles.buttonText}>Next</Text>

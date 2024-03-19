@@ -43,7 +43,7 @@ const OtpCom = ({setStep,otp,setOtp,mobileNo}) => {
       // Store the token securely
       console.log(response.data.token);
       await storeToken(token);
-      await storeMobile(token);
+      await storeMobile(mobileNo);
     } catch (error) {
       // Handle errors, e.g., show an error message
       console.error(error);

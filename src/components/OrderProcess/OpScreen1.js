@@ -8,7 +8,7 @@ const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) 
 
   const pricePerKg = product.price / 100;
   const totalAmount = (pricePerKg * parseFloat(weight)) || 0;
-  const calculationText = weight ? `₹${pricePerKg.toFixed(2)} per kg x ${weight} kg` : '';
+  const calculationText = weight ? `₹${pricePerKg.toFixed(2)}/kg x ${weight} kg` : '';
 
   return (
     <ScrollView>
@@ -41,6 +41,7 @@ const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) 
           keyboardType="numeric"
           returnKeyType="done"
           blurOnSubmit={true}
+          maxLength={10}
         />
         <Label text="Weight in kg" />
         <TextInput
@@ -51,6 +52,8 @@ const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) 
           keyboardType="numeric"
           returnKeyType="done"
           blurOnSubmit={true}
+          maxLength={12}
+
         />    
 
     
@@ -144,8 +147,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     width: '100%',
-    marginBottom:10
+    marginBottom: 10,
+    fontSize: 18, // Adjust the value to set the desired font size
   },
+  
   calculation: {
     fontSize: 16,
     color: '#333',
