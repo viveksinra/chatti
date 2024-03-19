@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
 
 const Label = ({ text }) => {
-  return <Text style={styles.label}>{text}</Text>;
+  return <Text style={styles.textLabel}>{text}</Text>;
 };
 
 const OpScreen3 = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setUpiId, accountNumber, setAccountNumber, accountHolderName, setAccountHolderName, ifsc, setIfsc}) => {
@@ -20,9 +20,9 @@ const OpScreen3 = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setU
       case 'upi':
         return (
           <View style={styles.inputContainer}>
-            {upiId && <Label text="Enter UPI ID" />}
+             <Label text="Enter UPI ID" />
             <TextInput
-              style={styles.input}
+              style={styles.textInput}
               onChangeText={text => setUpiId(text)}
               value={upiId}
               placeholder="Enter UPI ID"
@@ -32,23 +32,23 @@ const OpScreen3 = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setU
       case 'account':
         return (
           <View style={styles.inputContainer}>
-            {accountNumber && <Label text="Account Number" />}
+            <Label text="Account Number" />
             <TextInput
-              style={styles.input}
+              style={styles.textInput}
               onChangeText={text => setAccountNumber(text)}
               value={accountNumber}
               placeholder="Enter Account Number"
             />
-            {accountHolderName && <Label text="Account Holder Name" />}
+            <Label text="Account Holder Name" />
             <TextInput
-              style={styles.input}
+              style={styles.textInput}
               onChangeText={text => setAccountHolderName(text)}
               value={accountHolderName}
               placeholder="Enter Account Holder Name"
             />
-            {ifsc && <Label text="IFSC Code" />}
+            <Label text="IFSC Code" />
             <TextInput
-              style={styles.input}
+              style={styles.textInput}
               onChangeText={text => setIfsc(text )}
               value={ifsc}
               placeholder="Enter IFSC Code"
@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 50,
+    paddingTop: 10,
+    width:"98%"
   },
   title: {
     fontSize: 20,
@@ -118,20 +119,21 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 20, // Add horizontal padding for consistent spacing
   },
-  label: {
+  textLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
     marginBottom: 5,
-    fontSize: 14,
-    color: 'gray',
+    color:"green"
   },
-  input: {
+  textInput: {
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 8, // Adjust vertical padding for better appearance
-    marginBottom: 10,
-    flexGrow: 1, // Allow the input field to expand to fill the available space
+    padding: 10,
+    width: '100%',
+    marginBottom:10
   },
+
 });
 
 export default OpScreen3;

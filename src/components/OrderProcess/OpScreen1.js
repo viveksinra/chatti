@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, ScrollView } from 'react-native';
-
+const Label = ({ text }) => {
+  return <Text style={styles.textLabel}>{text}</Text>;
+};
 const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) => {
 
 
@@ -19,31 +21,18 @@ const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) 
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{product.productName}</Text>
-        <Text style={styles.quality}>Quality: {product.quality}</Text>
-        <Text style={styles.price}>Price per Quintal: ₹{product.price}</Text>
-        <Text style={styles.price}>Price per Kg: ₹{pricePerKg.toFixed(2)}</Text>
+        {/* <Text style={styles.quality}>Quality: {product.quality}</Text> */}
+        <Text style={styles.price}>Price: ₹{product.price}/Quintal ₹{pricePerKg.toFixed(2)}/kg</Text>
+        {/* <Text style={styles.price}>Price per Kg: </Text> */}
+        {weight && <View style={styles.totalContainer}>
+      <Text style={styles.calculation}>{calculationText}</Text>
+        <Text style={styles.total}>: ₹{totalAmount.toFixed(2)}</Text>
+        </View>}
       </View>
      
     </View>
     <View style={styles.inputContainer}>
-      <View style={styles.labelInputContainer}>
-        <Text style={styles.textLabel}>Weight in kg:</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={setWeight}
-          value={weight}
-          placeholder="Enter weight in kg"
-          keyboardType="numeric"
-          returnKeyType="done"
-          blurOnSubmit={true}
-        />
-      </View>
-      {weight && <View style={styles.totalContainer}>
-      <Text style={styles.calculation}>{calculationText}</Text>
-        <Text style={styles.total}>: ₹{totalAmount.toFixed(2)}</Text>
-        </View>}
-      <View style={styles.labelInputContainer}>
-        <Text style={styles.textLabel}>Mobile Number:</Text>
+    <Label text="Mobile Number* (required)" />
         <TextInput
           style={styles.textInput}
           onChangeText={setMobileNumber}
@@ -53,7 +42,17 @@ const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) 
           returnKeyType="done"
           blurOnSubmit={true}
         />
-      </View>
+        <Label text="Weight in kg" />
+        <TextInput
+          style={styles.textInput}
+          onChangeText={setWeight}
+          value={weight}
+          placeholder="Enter weight in kg"
+          keyboardType="numeric"
+          returnKeyType="done"
+          blurOnSubmit={true}
+        />    
+
     
     </View>
     
@@ -67,18 +66,19 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 5,
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 5,
+    width:'98%'
   },
 
   imageContainer: {
     marginRight: 10,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 50,
+    height: 50,
     resizeMode: 'cover',
     borderRadius: 5,
   },
@@ -98,22 +98,18 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#e74c3c',
+    color: 'green',
     marginBottom: 5,
   },
   
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
   input: {
-    height: 40,
-    width: '100%',
-    borderColor: '#ccc',
+    marginBottom: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
-    marginBottom: 10,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    width: '120%',
   },
   button: {
     backgroundColor: '#2ecc71',
@@ -126,12 +122,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   inputContainer: {
-    flex: 1,
-    marginLeft: 10,
-  
+    padding: 36,
+    width: '120%',
+    paddingTop:5,
+    paddingLeft:10,
+    paddingRight:80
   },
     labelInputContainer:{
-    flexDirection:'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     marginBottom: 20,
@@ -146,7 +143,8 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 5,
     padding: 10,
-    width: '65%',
+    width: '100%',
+    marginBottom:10
   },
   calculation: {
     fontSize: 16,
@@ -162,7 +160,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'flex-start',
 
-    marginBottom: 20,
+    marginBottom: 1,
   },
 });
 

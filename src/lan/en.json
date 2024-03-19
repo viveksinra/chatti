@@ -32,6 +32,11 @@
     "logout.four":"Cancel",
     "tAndC":"By signing up you agree to our Terms of use and Privacy Policy (Click to View)",
 
+    "orderHis.one":"From Where man",
+    "orderHis.two":"You Haven't Placed Any Order",
+    "orderHis.three":"Order Now",
+    
+
     "title":"Welcome",
     "status":"Thanks for Downloading and Using our App",
     "tab.orders":"Orders",

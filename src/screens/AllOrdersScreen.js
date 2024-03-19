@@ -9,6 +9,7 @@ import ContentContext, { startUrl } from '../Context/ContentContext';
 import GeneralLoading from '../components/General/GeneralLoading';
 import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
+import NoOrderHistory from '../components/OrderHistoryItem/NoOrderHistory';
 
 const image = { uri: ContentContext.orderHisBag };
 

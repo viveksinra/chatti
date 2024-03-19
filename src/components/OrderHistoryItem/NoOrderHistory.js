@@ -23,7 +23,7 @@ const NoOrderHistory = () => {
         <View style={styles.overlay}>
           <Text style={styles.noOrderText}>{t('orderHis.two')}</Text>
           <TouchableOpacity style={styles.refreshButton} onPress={handleStartOrder}>
-            <FontAwesome name="comments" size={24} color="white" />
+            <FontAwesome name="cart-plus" size={24} color="white" />
             <Text style={styles.buttonText}>{t('orderHis.three')}</Text>
           </TouchableOpacity>
         </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   refreshButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#3498db',
+    backgroundColor: 'green',
     padding: 10,
     borderRadius: 5,
   },
