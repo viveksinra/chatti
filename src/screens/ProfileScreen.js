@@ -75,7 +75,7 @@ const ProfileScreen = () => {
 
   const commonUpdateFunction = async (requestData, type) => {
     try {
-      let url = `${startUrl}/chattiApi/allCommon/profile/userData`;
+      let url = `${startUrl}/chattiApi/allCommon/profile/updateUserData`;
       // Retrieve the token from SecureStore
       let token = await SecureStore.getItemAsync('authToken');
       // Set the Authorization header for the request
