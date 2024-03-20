@@ -37,7 +37,36 @@
     "tab.setting": "सेटिंग्स",
     "setting.language":"भाषा",
 
+    "opSc.one": "आर्डर विवरण",
+    "opSc.two": "पता चयनकर्ता",
+    "opSc.three": "भुगतान विवरण",
+    "opSc.four": "वापस",
+    "opSc.five": "आगे",
+    "opSc.six": "जमा करें (भेजें)",
+  
+    "opScreen1.one":"किलो",
+    "opScreen1.two":"क्विंटल",
+    "opScreen1.three":"मोबाइल नंबर* (आवश्यक)",
+    "opScreen1.four":"वजन (किलोग्राम में)",
+    "opScreen1.five":"कीमत",
+  
+    "opScreen2.one": "पिकअप पता दर्ज करें (आवश्यक नहीं)",
+    "opScreen2.two": "फ्लैट / मकान नंबर / मंजिल / भवन",
+    "opScreen2.three": "सड़क का पता",
+    "opScreen2.four": "जिला",
+    "opScreen2.five": "राज्य",
+    "opScreen2.six": "पिनकोड",
     
+    "opScreen3.one": "भुगतान विधि चुनें:",
+    "opScreen3.two": "नकद",
+    "opScreen3.three": "यूपीआई (UPI)",
+    "opScreen3.four": "बैंक खाता",
+    "opScreen3.five": "यूपीआई आईडी दर्ज करें",
+    "opScreen3.six": "खाता संख्या दर्ज करें",
+    "opScreen3.seven": "खाताधारक का नाम दर्ज करें",
+    "opScreen3.eight": "IFSC कोड दर्ज करें",
+
+
 "orderHis.one": "कहाँ से VKS",
 "orderHis.two": "आपने अभी कोई ऑर्डर नहीं दिया है",
 "orderHis.three": "अभी ऑर्डर करें",

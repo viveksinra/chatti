@@ -8,8 +8,11 @@ import axios from 'axios';
 import { startUrl } from '../Context/ContentContext';
 import { useNavigation } from '@react-navigation/native';
 import GeneralLoading from '../components/General/GeneralLoading';
+import { useTranslation } from 'react-i18next';
 
 const OrderProcessScreen = ({ route }) => {
+  const { t } = useTranslation();
+ 
   const [mobileNumber, setMobileNumber] = useState("");
   const { product } = route.params;
   const [currentStep, setCurrentStep] = useState(1);
@@ -96,15 +99,15 @@ const OrderProcessScreen = ({ route }) => {
       <View style={styles.stepperContainer}>
         <TouchableOpacity onPress={() => setCurrentStep(1)}>
           <Text style={[styles.stepText, currentStep === 1 && styles.activeStepText]}>1</Text>
-          <Text style={[styles.stepLabel, currentStep === 1 && styles.activeStepLabel]}>Order Details</Text>
+          <Text style={[styles.stepLabel, currentStep === 1 && styles.activeStepLabel]}>{t('opSc.one')}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setCurrentStep(2)}>
           <Text style={[styles.stepText, currentStep === 2 && styles.activeStepText]}>2</Text>
-          <Text style={[styles.stepLabel, currentStep === 2 && styles.activeStepLabel]}>Address Selector</Text>
+          <Text style={[styles.stepLabel, currentStep === 2 && styles.activeStepLabel]}>{t('opSc.two')}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setCurrentStep(3)}>
           <Text style={[styles.stepText, currentStep === 3 && styles.activeStepText]}>3</Text>
-          <Text style={[styles.stepLabel, currentStep === 3 && styles.activeStepLabel]}>Payment Details</Text>
+          <Text style={[styles.stepLabel, currentStep === 3 && styles.activeStepLabel]}>{t('opSc.three')}</Text>
         </TouchableOpacity>
       </View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -117,15 +120,15 @@ const OrderProcessScreen = ({ route }) => {
             disabled={currentStep === 1}
             onPress={handleBack}
           >
-            <Text style={styles.buttonText}>Back</Text>
+            <Text style={styles.buttonText}>{t('opSc.four')}</Text>
           </TouchableOpacity>
           {currentStep !== 3 ? (
             <TouchableOpacity style={styles.button} onPress={handleNext}>
-              <Text style={styles.buttonText}>Next</Text>
+              <Text style={styles.buttonText}>{t('opSc.five')}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity style={[styles.button, styles.submitButton]} onPress={handleFinish}>
-              <Text style={styles.submitButtonText}>Submit</Text>
+              <Text style={styles.submitButtonText}>{t('opSc.six')}</Text>
             </TouchableOpacity>
           )}
         </View>

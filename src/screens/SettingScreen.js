@@ -35,7 +35,7 @@ const SettingScreen = () => {
       {/* <ThemeSelector /> */}
       <LanguageSelector showIconOnly={false}  />
       <ShareCom />
-      <SocialAccount />
+      {/* <SocialAccount /> */}
 
       <LogOutButton />
 <TermPopup /> 

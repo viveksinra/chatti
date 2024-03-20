@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 const Label = ({ text }) => {
   return <Text style={styles.textLabel}>{text}</Text>;
 };
 const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) => {
+  const { t } = useTranslation();
 
 
   const pricePerKg = product.price / 100;
   const totalAmount = (pricePerKg * parseFloat(weight)) || 0;
-  const calculationText = weight ? `₹${pricePerKg.toFixed(2)}/kg x ${weight} kg` : '';
-
+  const calculationText = weight ? `₹${pricePerKg.toFixed(2)}/${t('opScreen1.one')} x ${weight} ${t('opScreen1.one')}` : '';
   return (
     <ScrollView>
     <View style={styles.container}>
@@ -20,9 +22,9 @@ const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) 
         />
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>{product.productName}</Text>
+        <Text style={styles.name}>{ (t('LanguageCode') === "en-IN" )? product.productName : product.productNameHindi}</Text>
         {/* <Text style={styles.quality}>Quality: {product.quality}</Text> */}
-        <Text style={styles.price}>Price: ₹{product.price}/Quintal ₹{pricePerKg.toFixed(2)}/kg</Text>
+        <Text style={styles.price}>{t('opScreen1.five')}: ₹{product.price}/{t('opScreen1.two')} Or ₹{pricePerKg.toFixed(2)}/{t('opScreen1.one')}</Text>
         {/* <Text style={styles.price}>Price per Kg: </Text> */}
         {weight && <View style={styles.totalContainer}>
       <Text style={styles.calculation}>{calculationText}</Text>
@@ -32,23 +34,23 @@ const OpScreen1 = ({ product,weight, setWeight,mobileNumber, setMobileNumber }) 
      
     </View>
     <View style={styles.inputContainer}>
-    <Label text="Mobile Number* (required)" />
+    <Label text= {t('opScreen1.three')} />
         <TextInput
           style={styles.textInput}
           onChangeText={setMobileNumber}
           value={mobileNumber}
-          placeholder="Enter Mobile Number"
+          placeholder={t('opScreen1.three')}
           keyboardType="numeric"
           returnKeyType="done"
           blurOnSubmit={true}
           maxLength={10}
         />
-        <Label text="Weight in kg" />
+        <Label text={t('opScreen1.four')} />
         <TextInput
           style={styles.textInput}
           onChangeText={setWeight}
           value={weight}
-          placeholder="Enter weight in kg"
+          placeholder={t('opScreen1.four')}
           keyboardType="numeric"
           returnKeyType="done"
           blurOnSubmit={true}

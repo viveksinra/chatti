@@ -3,12 +3,15 @@ import { ScrollView, View, TextInput, Button, StyleSheet, Text, Dimensions } fro
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons'; // Make sure to install @expo/vector-icons
+import { useTranslation } from 'react-i18next';
 
 const Label = ({ text }) => {
   return <Text style={styles.textLabel}>{text}</Text>;
 };
 
 const OpScreen2 = ({location, setLocation,address, setAddress,flat, setFlat}) => {
+  const { t } = useTranslation();
+
   const [errorMsg, setErrorMsg] = useState(null);
   const [permissionGranted, setPermissionGranted] = useState(true);
 
@@ -63,20 +66,20 @@ const OpScreen2 = ({location, setLocation,address, setAddress,flat, setFlat}) =>
             <View style={styles.buttonContainer}>
               <Button icon={<MaterialIcons name="my-location" size={24} color="white" />} title=" Get Current Location" onPress={getLocation} color="#841584" />
             </View> */}
-        <Text style={styles.address}>Enter the Pickup Address (not Required)</Text>
+        <Text style={styles.address}>{t('opScreen2.one')}</Text>
 
             <View style={styles.inputContainer}>
 
-          <Label text="Flat / House No. / Floor / Building" />
-              <TextInput style={[styles.input, styles.addressInput]} placeholder="Flat / House No. / Floor / Building" value={flat} onChangeText={text => setFlat(text)} />
-            <Label text="Street Address" />             
-              <TextInput style={[styles.input, styles.addressInput]} placeholder="Street Address" value={address.formattedAddress} onChangeText={text => setAddress({ ...address, formattedAddress: text })} />
-             <Label text="District" />            
-              <TextInput style={[styles.input, styles.addressInput]} placeholder="District" value={address.city} onChangeText={text => setAddress({ ...address, city: text })} />
-             <Label text="State" />             
-              <TextInput style={styles.input} placeholder="State" value={address.region} onChangeText={text => setAddress({ ...address, region: text })} />
-               <Label text="Pincode" />
-             <TextInput style={styles.input} placeholder="Pincode" value={address.postalCode} onChangeText={text => setAddress({ ...address, postalCode: text })} />
+          <Label text={t('opScreen2.two')} />
+              <TextInput style={[styles.input, styles.addressInput]} placeholder={t('opScreen2.two')} value={flat} onChangeText={text => setFlat(text)} />
+            <Label text={t('opScreen2.three')} />             
+              <TextInput style={[styles.input, styles.addressInput]} placeholder={t('opScreen2.three')} value={address.formattedAddress} onChangeText={text => setAddress({ ...address, formattedAddress: text })} />
+             <Label text={t('opScreen2.four')} />            
+              <TextInput style={[styles.input, styles.addressInput]} placeholder={t('opScreen2.four')} value={address.city} onChangeText={text => setAddress({ ...address, city: text })} />
+             <Label text={t('opScreen2.five')} />             
+              <TextInput style={styles.input} placeholder={t('opScreen2.five')} value={address.region} onChangeText={text => setAddress({ ...address, region: text })} />
+               <Label text={t('opScreen2.six')} />
+             <TextInput style={styles.input} placeholder={t('opScreen2.six')} value={address.postalCode} onChangeText={text => setAddress({ ...address, postalCode: text })} />
             </View>
             {location && <Text style={styles.coordinates}>Lat: {location.latitude.toFixed(3)}, Long: {location.longitude.toFixed(3)}</Text>}
           </>

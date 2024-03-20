@@ -32,6 +32,36 @@
     "logout.four":"Cancel",
     "tAndC":"By signing up you agree to our Terms of use and Privacy Policy (Click to View)",
 
+    "opSc.one": "Order Details",
+    "opSc.two": "Address Selector",
+    "opSc.three": "Payment Details",
+    "opSc.four": "Back",
+    "opSc.five": "Next",
+    "opSc.six": "Submit",
+
+    "opScreen1.one":"kg",
+    "opScreen1.two":"Quintal",
+    "opScreen1.three":"Mobile Number* (required)",
+    "opScreen1.four":"Weight in kg",
+    "opScreen1.five":"Price",
+
+    "opScreen2.one": "Enter the Pickup Address (not Required)",
+    "opScreen2.two": "Flat / House No. / Floor / Building",
+    "opScreen2.three": "Street Address",
+    "opScreen2.four": "District",
+    "opScreen2.five": "State",
+    "opScreen2.six": "Pincode",
+    
+    "opScreen3.one": "Select Payment Method:",
+    "opScreen3.two": "Cash",
+    "opScreen3.three": "UPI",
+    "opScreen3.four": "Bank Account",
+    "opScreen3.five": "Enter UPI ID",
+    "opScreen3.six": "Enter Account Number",
+    "opScreen3.seven": "Enter Account Holder Name",
+    "opScreen3.eight": "Enter IFSC Code",
+    
+
     "orderHis.one":"From Where man",
     "orderHis.two":"You Haven't Placed Any Order",
     "orderHis.three":"Order Now",

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const Label = ({ text }) => {
   return <Text style={styles.textLabel}>{text}</Text>;
 };
 
 const OpScreen3 = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setUpiId, accountNumber, setAccountNumber, accountHolderName, setAccountHolderName, ifsc, setIfsc}) => {
+  const { t } = useTranslation();
+
   const handlePaymentMethodSelection = (method) => {
     setSelectedPaymentMethod(method);
     setUpiId('');
@@ -20,38 +23,38 @@ const OpScreen3 = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setU
       case 'upi':
         return (
           <View style={styles.inputContainer}>
-             <Label text="Enter UPI ID" />
+             <Label text={t('opScreen3.five')} />
             <TextInput
               style={styles.textInput}
               onChangeText={text => setUpiId(text)}
               value={upiId}
-              placeholder="Enter UPI ID"
+              placeholder={t('opScreen3.five')}
             />
           </View>
         );
       case 'account':
         return (
           <View style={styles.inputContainer}>
-            <Label text="Account Number" />
+            <Label text={t('opScreen3.six')} />
             <TextInput
               style={styles.textInput}
               onChangeText={text => setAccountNumber(text)}
               value={accountNumber}
-              placeholder="Enter Account Number"
+              placeholder={t('opScreen3.six')}
             />
-            <Label text="Account Holder Name" />
+            <Label text={t('opScreen3.seven')} />
             <TextInput
               style={styles.textInput}
               onChangeText={text => setAccountHolderName(text)}
               value={accountHolderName}
-              placeholder="Enter Account Holder Name"
+              placeholder={t('opScreen3.seven')}
             />
-            <Label text="IFSC Code" />
+            <Label text={t('opScreen3.eight')} />
             <TextInput
               style={styles.textInput}
               onChangeText={text => setIfsc(text )}
               value={ifsc}
-              placeholder="Enter IFSC Code"
+              placeholder={t('opScreen3.eight')}
             />
           </View>
         );
@@ -62,16 +65,16 @@ const OpScreen3 = ({selectedPaymentMethod, setSelectedPaymentMethod, upiId, setU
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Select Payment Method:</Text>
+      <Text style={styles.title}>{t('opScreen3.one')}</Text>
       <View style={styles.radioButtonContainer}>
         <TouchableOpacity style={selectedPaymentMethod.id === 'cash' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection({label:"Cash",id:"cash"})}>
-          <Text style={styles.radioText}>Cash</Text>
+          <Text style={styles.radioText}>{t('opScreen3.two')}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={selectedPaymentMethod.id === 'upi' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection({label:"Upi",id:"upi"})}>
-          <Text style={styles.radioText}>UPI</Text>
+          <Text style={styles.radioText}>{t('opScreen3.three')}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={selectedPaymentMethod.id === 'account' ? styles.radioButtonSelected : styles.radioButton} onPress={() => handlePaymentMethodSelection({label:"Account",id:"account"})}>
-          <Text style={styles.radioText}>Bank Account</Text>
+          <Text style={styles.radioText}>{t('opScreen3.four')}</Text>
         </TouchableOpacity>
       </View>
 
