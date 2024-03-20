@@ -25,7 +25,7 @@ const ListProduct = ({product}) => {
         {/* Product Information */}
         <Text style={styles.name}>{ (t('LanguageCode') === "en-IN" )? product.productName : product.productNameHindi}</Text>
         <Text style={styles.quality}>{t('product.one')} { (t('LanguageCode') === "en-IN" )? product.quality : product.qualityHindi}</Text>
-        <Text style={styles.price}>{t('product.two')}{product.price}/quintal</Text>
+        <Text style={styles.price}>{t('product.two')}{product.price}/{t('opScreen1.two')}</Text>
           
             {/* Add to Cart Button */}
             <Pressable style={styles.addButton} onPress={() => sendToOrderProcess()}>

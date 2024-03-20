@@ -10,18 +10,18 @@ import TermPopup from '../authentication/authComponent/MobileLogin/TermPopup';
 import ListProduct from '../components/Product/ListProduct';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
+import GeneralLoading from '../components/General/GeneralLoading';
 
 
 const HomeScreens = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
  const [allProduct, setAllProduct] = useState([
-  {_id:"absd",productName:"Test (Server Error)", quality:"High-Quality Grade 1 Maize",price:"9950",productImage:"https://static.doofinder.com/main-files/uploads/2019/09/error-500-doofinder.jpg"},
-  {_id:"bsd",productName:"Test (Server Error)", quality:"Quality Grade 2 Maize",price:"9600",productImage:"https://static.doofinder.com/main-files/uploads/2019/09/error-500-doofinder.jpg"},
-  {_id:"sd",productName:"Test (Server Error)", quality:"Quality Grade 3 Maize",price:"9510",productImage:"https://static.doofinder.com/main-files/uploads/2019/09/error-500-doofinder.jpg"},
- ])
+])
+ const [loading, setLoading] = useState(false);
 
  const getProduct = async () => {
+  setLoading(true)
   const url = `${startUrl}/chattiApi/allCommon/product/getProductForPublic`;
 
   // Retrieve the authorization token from SecureStore
@@ -40,6 +40,8 @@ const HomeScreens = () => {
     } else {
       alert("Failed to Connect to server, check your internet connection");
     }
+  setLoading(false)
+
   } catch (error) {
     console.error("Error fetching product data:", error);
     alert("Failed to fetch product data");
@@ -53,6 +55,8 @@ useEffect(() => {
 
   return (
 <ScrollView>
+<GeneralLoading loading={loading} loadingText={'Placing your Order'} />
+
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <ImageBackground source={image} style={styles.image}>
     <Corn />
