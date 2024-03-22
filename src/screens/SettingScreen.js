@@ -34,7 +34,7 @@ const SettingScreen = () => {
       <ProfileButton name={name} status={status} userImage={userImage}/>
       {/* <ThemeSelector /> */}
       <LanguageSelector showIconOnly={false}  />
-      <ShareCom />
+      {/* <ShareCom /> */}
       {/* <SocialAccount /> */}
 
       <LogOutButton />
