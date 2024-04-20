@@ -30,7 +30,6 @@ const PermanentDelete = ({ mobileNumber }) => {
     }
   };
   const DeleteAccountApi = async () => {
-    console.log("deletee api")
 
     try {
       let url = `${startUrl}/chattiApi/allCommon/deleteProfile/withOtp`;
@@ -72,8 +71,8 @@ const PermanentDelete = ({ mobileNumber }) => {
     setOtp(otp);
     setDialogVisible(false);
     DeleteAccountApi()
-    // await SecureStore.deleteItemAsync('authToken');
-    //   setIsSignedIn(false);
+    await SecureStore.deleteItemAsync('authToken');
+      setIsSignedIn(false);
   };
 
   const handleDeleteAccount = () => {
