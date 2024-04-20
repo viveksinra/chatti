@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { TouchableOpacity, View, Text, ToastAndroid,Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { useTranslation } from 'react-i18next';
 import * as SecureStore from 'expo-secure-store';
@@ -49,7 +49,7 @@ const LogOutButton = () => {
     <TouchableOpacity style={styles.button} onPress={handleLogout}>
       <View style={styles.buttonContent}>
         <View style={styles.buttonIconContainer}>
-          <Ionicons name="trash-outline" size={24} color="red" />
+        <MaterialCommunityIcons name="logout" size={24} color="red" />
         </View>
         <Text style={styles.buttonText}>{t("logout.one")}</Text>
       </View>

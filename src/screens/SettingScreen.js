@@ -12,6 +12,7 @@ import { AppContext } from '../../context/appContext';
 import handleSetData from '../utils/handleSetData';
 import SocialAccount from '../components/Contact/SocialAccount';
 import TermPopup from '../authentication/authComponent/MobileLogin/TermPopup';
+import PermanentDelete from '../components/SettingComponent/PermanentDelete';
 
 const SettingScreen = () => {
   const { name,

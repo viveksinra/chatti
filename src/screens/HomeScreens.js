@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet,Animated,ScrollView,  ImageBackground } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Corn from '../components/Corn';
-
+import { Ionicons } from '@expo/vector-icons';
 import ContentContext, { startUrl } from '../Context/ContentContext';
 const image = { uri: ContentContext.mainBg };
 import { useNavigation } from '@react-navigation/native';
@@ -67,7 +67,13 @@ useEffect(() => {
         <Text style={{ color: '#34d399', fontWeight: 'bold' }}>
     {t('secMain.two')}
           </Text>
-    {t('secMain.three')}
+    {t('secMain.three') +" "}
+    <Button
+          title="Refresh"
+          onPress={getProduct}
+          color="#34d399"
+          icon={<Ionicons name="refresh" size={24} color="white" />} // Add the icon here
+        />
          </Text>
 {allProduct.map(product => (
   <ListProduct key={product._id} product={product}/>

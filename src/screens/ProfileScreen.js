@@ -8,6 +8,7 @@ import axios from 'axios';
 import { ToastAndroid } from 'react-native';
 import { AppContext } from '../../context/appContext';
 import handleSetData from '../utils/handleSetData';
+import PermanentDelete from '../components/SettingComponent/PermanentDelete';
 
 const ProfileScreen = () => {
   const { name,
@@ -157,6 +158,8 @@ const ProfileScreen = () => {
           <Text style={styles.label}>Mobile Number</Text>
           <Text style={styles.nonEditableLabel}>{mobileNumber}</Text>
         </View>
+<PermanentDelete mobileNumber={mobileNumber}/>
+
       </ImageBackground>
     </View>
   );
