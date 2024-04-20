@@ -1,7 +1,7 @@
 let ContentContext = {
 
-     startUrl : "https://qualifier.co.in",
-//  startUrl : "http://192.168.1.3:2040",
+     // startUrl : "https://qualifier.co.in",
+ startUrl : "http://192.168.1.3:2040",
 //  startUrl : "http://192.168.1.10:2040",
 orderHisBag:"https://images.unsplash.com/photo-1541140134513-85a161dc4a00?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JleSUyMHRleHR1cmV8ZW58MHx8MHx8fDA%3D",
 mainBg:"https://www.onlygfx.com/wp-content/uploads/2021/04/white-triangle-pattern-seamless-background-2.jpg",

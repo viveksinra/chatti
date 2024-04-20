@@ -30,6 +30,8 @@ const PermanentDelete = ({ mobileNumber }) => {
     }
   };
   const DeleteAccountApi = async () => {
+    console.log("deletee api")
+
     try {
       let url = `${startUrl}/chattiApi/allCommon/deleteProfile/withOtp`;
       // Retrieve the token from SecureStore
@@ -65,6 +67,8 @@ const PermanentDelete = ({ mobileNumber }) => {
   };
 
   const handleConfirm = async() => {
+    console.log("here deletee api")
+
     setOtp(otp);
     setDialogVisible(false);
     DeleteAccountApi()
